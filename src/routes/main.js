@@ -59,7 +59,7 @@ const signIn = async (req, res) => {
         if (!email || !password) {
             return res.status(400).send({
                 status: 'error',
-                message: 'login information not provided'
+                message: 'signin information not provided'
             });
         }
         const { error, user } = await db.userExists(email, password);

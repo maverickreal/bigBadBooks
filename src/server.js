@@ -1,18 +1,19 @@
+require('dotenv').config();
+require('./data/main.js').init(); // Initialize the data tier
+
 const express = require('express'),
-      app = express(),
       helmet = require('helmet'),
       morgan = require('morgan'),
       cors = require('cors'),
       { auth } = require('./middleware/auth.js'),
-      router = require('./routes/main.js'),
-      db = require('./data/main.js');
+      router = require('./routes/main.js');
+      
+const app = express();
 
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(cors());
-
-db.init(); // Initialize the data tier
 
 app.post('/signup', router.signUp);
 
@@ -32,9 +33,6 @@ app.get('/book/:bookId', auth, router.getBook);
 
 app.get('/books', auth, router.getUserBooks);
 
-if (process.env.ENV === 'test') {
-    module.exports = app;
-}
-else {
-    app.listen(process.env.PORT || 3000);
-}
+// app.listen(process.env.PORT, ()=>console.log('Started app server.'));
+
+module.exports = app;

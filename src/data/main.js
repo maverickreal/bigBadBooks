@@ -2,6 +2,8 @@ const MongoClient = require('mongodb').MongoClient;
 
 const uri = `mongodb://${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DBNAME}`;
 
+console.log(uri);
+
 let client = new MongoClient(
   uri,
   { useNewUrlParser: true }
@@ -11,7 +13,7 @@ const init = async () => {
   try {
     await client.connect();
     db = client.db(process.env.DBNAME);
-    const toFlush = ( process.env.ENV==='test' );
+    const toFlush = ( process.env.FLUSHDB==='true' );
     if(toFlush){
       await truncate();
     }

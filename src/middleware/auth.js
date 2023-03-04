@@ -29,7 +29,7 @@ const auth = (req, res, next) => {
         }
     }
     catch (error) {
-        console.log(error);
+        console.log('auth error', error);
         res.status(401).send({ status: 'error', message: 'authentication failed' });
     }
 };
