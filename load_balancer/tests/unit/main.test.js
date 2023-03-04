@@ -1,5 +1,6 @@
-const app = require('../../main.js'), st = require('supertest'),
-      req = st(app), {truncate} = require('../../src/data/main.js');
+const app = require('../../src/server.js'),
+      st = require('supertest'),
+      req = st(app);
 
 //jest.setTimeout(100000);
 
