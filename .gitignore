@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+bigBadBooks.sublime-workspace
+bigBadBooks.sublime-project
