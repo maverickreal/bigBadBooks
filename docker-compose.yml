@@ -1,17 +1,48 @@
 services:
-  server:
+  server1:
+    build: ./app
+    environment:
+      - PORT=3000
+    ports:
+      - '3000:2000'
+    depends_on:
+      - mongodb
+  server2:
+    environment:
+      - PORT=3001
     build: ./app
     ports:
-      - '3000:3000'
+      - '3001:2001'
+    depends_on:
+      - mongodb
+  server3:
+    environment:
+      - PORT=3002
+    build: ./app
+    ports:
+      - '3002:2002'
+    depends_on:
+      - mongodb
+  server4:
+    environment:
+      - PORT=3003
+    build: ./app
+    ports:
+      - '3003:2003'
     depends_on:
       - mongodb
   mongodb:
     image: mongo
   lb:
+    environment:
+      - INSTANCEHOST=server
     build: ./load_balancer
-    tty: true
-    stdin_open: true
+    # tty: true
+    # stdin_open: true
     ports:
       - '8000:8000'
     depends_on:
-      - server
+      - server1
+      - server2
+      - server3
+      - server4

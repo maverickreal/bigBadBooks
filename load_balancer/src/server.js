@@ -9,7 +9,10 @@ const limit = process.env.LIMIT,
 const proxy = httpProxy.createProxyServer({}),
 	  server = http.createServer(function(req, res) {
 	  	const offset = Math.floor(Math.random()*limit),
-	  		  target = `http://${process.env.INSTANCEHOST}:${+base + +offset}`;
+	  		  toHost = process.env.INSTANCEHOST + (+offset + 1), // -> x000(n) == server(n+1)
+	  		  toPort = +base + +offset,
+	  		  target = `http://${toHost}:${toPort}`;
+	  	console.log(`Redirecting to ${target}.`);
 	  	proxy.web(req, res, { target });
 	  });
  
