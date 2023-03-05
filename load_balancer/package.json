@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "clear ; ENV=test jest main.test.js"
+    "test": "jest main.test.js"
   },
   "repository": {
     "type": "git",

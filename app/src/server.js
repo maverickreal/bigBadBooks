@@ -1,4 +1,3 @@
-require('dotenv').config();
 require('./data/main.js').init(); // Initialize the data tier
 
 const express = require('express'),
