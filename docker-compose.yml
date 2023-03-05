@@ -1,0 +1,17 @@
+services:
+  server:
+    build: ./app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+  lb:
+    build: ./load_balancer
+    tty: true
+    stdin_open: true
+    ports:
+      - '8000:8000'
+    depends_on:
+      - server

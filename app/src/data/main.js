@@ -2,8 +2,6 @@ const MongoClient = require('mongodb').MongoClient;
 
 const uri = `mongodb://${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DBNAME}`;
 
-console.log(uri);
-
 let client = new MongoClient(
   uri,
   { useNewUrlParser: true }
