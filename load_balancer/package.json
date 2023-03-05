@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest main.test.js",
+    "test": "ENV=test jest main.test.js",
     "start": "node src/server.js"
   },
   "repository": {

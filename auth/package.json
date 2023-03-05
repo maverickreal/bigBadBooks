@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "clear ; PORT=5000 ENV=test JWTSECRETKEY=aGoodKey jest main.test.js",
+    "test": "clear ; ENV=test jest main.test.js",
     "start": "node src/server.js"
   },
   "repository": {
