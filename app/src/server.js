@@ -4,7 +4,6 @@ const express = require('express'),
       helmet = require('helmet'),
       morgan = require('morgan'),
       cors = require('cors'),
-      { auth } = require('./middleware/auth.js'),
       router = require('./controllers/main.js');
       
 const app = express();

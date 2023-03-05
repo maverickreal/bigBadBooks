@@ -39,7 +39,10 @@ const signUp = async (req, res) => {
             });
         }
         else{
-            assignToken(user);
+            const assigned = await assignToken(user);
+            if(!assigned){
+                return res.status(500).send({status: 'error'});
+            }
             delete user.userId;
             res.status(200).send({
                 status: 'ok',
@@ -69,7 +72,10 @@ const signIn = async (req, res) => {
                 message: error
             });
         }
-        assignToken(user);
+        const assigned = await assignToken(user);
+        if(!assigned){
+            return res.status(500).send({status: 'error'});
+        }
         delete user.userId;
         res.status(200).send({
             status: 'ok',

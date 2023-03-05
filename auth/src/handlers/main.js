@@ -32,11 +32,11 @@ const unauthorise = async (req, res)=>{
     }
 }
 
-const verify = async (req, res)=>{
+const verify = (req, res)=>{
     try{
-        const {token, userId} = req.body;
-        const user = auth(userId, token);
-        if(user===null){
+        const {token} = req.body,
+              user = auth(token);
+        if(user==null){
             res.status(404).send({status:'error', message:'Correct token not provided.'});
         }
         else{

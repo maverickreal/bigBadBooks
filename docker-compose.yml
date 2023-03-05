@@ -1,36 +1,55 @@
 services:
+  auth:
+    build: ./auth
+    environment:
+      - PORT=5000
+      - JWTSECRETKEY=#Onegoodkey9
+    ports:
+      - '5000:5000'
   server1:
     build: ./app
     environment:
       - PORT=3000
+      - AUTHHOST=auth
+      - AUTHPORT=5000
     ports:
       - '3000:2000'
     depends_on:
       - mongodb
+      - auth
   server2:
     environment:
       - PORT=3001
+      - AUTHHOST=auth
+      - AUTHPORT=5000
     build: ./app
     ports:
       - '3001:2001'
     depends_on:
       - mongodb
+      - auth
   server3:
     environment:
       - PORT=3002
+      - AUTHHOST=auth
+      - AUTHPORT=5000
     build: ./app
     ports:
       - '3002:2002'
     depends_on:
       - mongodb
+      - auth
   server4:
     environment:
       - PORT=3003
+      - AUTHHOST=auth
+      - AUTHPORT=5000
     build: ./app
     ports:
       - '3003:2003'
     depends_on:
       - mongodb
+      - auth
   mongodb:
     image: mongo
   lb:

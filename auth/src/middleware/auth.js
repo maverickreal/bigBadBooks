@@ -1,10 +1,11 @@
 const { verify, sign } = require('jsonwebtoken');
 
-let uidToJwt = {};
+let uidToJwt = {},
+    jsk = process.env.JWTSECRETKEY;
 
 const assignToken = user => {
     const jwtToken = sign(user,
-        process.env.JWTSECRETKEY,
+        jsk,
         { expiresIn: '7d' }
         );
     user.token = jwtToken;
@@ -15,10 +16,10 @@ const invalidate = userId => {
     delete uidToJwt[userId];
 }
 
-const auth = (userId, jwtToken) => {
+const auth = jwtToken => {
     try {
-        const user = verify(jwtToken, process.env.JWTSECRETKEY),
-              realToken = uidToJwt[userId];
+        const user = verify(jwtToken, jsk),
+              realToken = uidToJwt[user.userId];
         return ( realToken === jwtToken ? user : null );
     }
     catch (error) {
@@ -26,7 +27,6 @@ const auth = (userId, jwtToken) => {
         return null;
     }
 };
-
 
 module.exports = {
     assignToken, auth, invalidate

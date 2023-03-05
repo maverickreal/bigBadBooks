@@ -1,8 +1,6 @@
 const http = require('http'),
 	  httpProxy = require('http-proxy');
 
-require('dotenv').config();
-
 const limit = process.env.LIMIT,
 	  base = process.env.BASE;
 
@@ -20,5 +18,5 @@ if(process.env.ENV==='test'){
 	module.exports = server;
 }
 else{
-	server.listen(process.env.PORT, ()=>console.log(`Main server started at ${process.env.PORT}.`));
+	server.listen(process.env.PORT, ()=>console.log(`Load-balancer started at ${process.env.PORT}.`));
 }
