@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "sleep 60 && ENV=test jest main.test.js",
+    "test": "sleep 60 && ENV=test jest main.test.js", // to allow for the containers of server instances to boot up
     "start": "node src/server.js"
   },
   "repository": {
