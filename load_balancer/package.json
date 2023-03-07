@@ -6,7 +6,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "ENV=test jest main.test.js",
+    "test": "sleep 60 && ENV=test jest main.test.js",
     "start": "node src/server.js"
   },
   "repository": {

@@ -2,8 +2,7 @@ const app = require('../../src/server.js'),
       st = require('supertest'),
       req = st(app);
 
-jest.setTimeout(10000);
-
+// jest.setTimeout(10000);
 describe('running tests', () => {
 
     test('testing signup', async () => {

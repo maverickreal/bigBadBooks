@@ -52,6 +52,9 @@ services:
       - auth
   mongodb:
     image: mongo
+    command: 
+      - '--logpath'
+      - '/var/log/mongodb/mongod.log'
   lb:
     environment:
       - INSTANCEHOST=server
